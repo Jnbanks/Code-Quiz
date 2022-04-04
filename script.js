@@ -163,7 +163,8 @@ for (var i = 0; i < divTags.length; i++) {
 
 
 
-// Stores user response in variable =================can be used for storing user answer, then used to compare to answer pool.
+// Stores user response in variable 
+//=================can be used for storing user answer, then used to compare to answer pool.
 var tagName = prompt("Please enter an HTML Tag (ex. h1, h2, p, div):", "enter tag");
 
 if (tagName !== "h1" && tagName !== "h2" && tagName !== "p" && tagName !== "div") {
@@ -191,3 +192,143 @@ if (nextTag === true) {
     document.body.appendChild(secondTag);
   }
 }
+
+
+
+//====================This is necessary for the timer
+// Selects element by class
+var timeEl = document.querySelector(".time");
+
+// Selects element by id
+var mainEl = document.getElementById("main");
+
+var secondsLeft = 10;
+
+function setTime() {
+  // Sets interval in variable
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+    if(secondsLeft === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function to create and append image
+      sendMessage();a
+    }
+
+  }, 1000);
+}
+
+// Function to create and append colorsplosion image
+function sendMessage() {
+  timeEl.textContent = " ";
+  var imgEl = document.createElement("img");
+  imgEl.setAttribute("src", "images/image_1.jpg");
+  mainEl.appendChild(imgEl);
+
+}
+//===============remember that you can style things in the html, not just on a css stylesheet
+<body>  
+    <h1 class="time" style="text-align:center;"></h1>
+    <div id="main"></div>
+
+    <script src="./script.js"></script>
+</body>
+
+
+
+//====================This is important for clicking on buttons and responses
+// Access toggle switch HTML element
+var themeSwitcher = document.querySelector("#theme-switcher");
+var container = document.querySelector(".container");
+
+// Set default mode to dark
+var mode = "dark";
+
+// Listen for a click event on toggle switch
+themeSwitcher.addEventListener("click", function() {
+  // If mode is dark, apply light background
+  if (mode === "dark") {
+    mode = "light";
+    container.setAttribute("class", "light");
+  }
+  // If mode is light, apply dark background 
+  else {
+    mode = "dark";
+    container.setAttribute("class", "dark");
+  }
+});
+
+
+
+
+//================This is for the initials input section
+var submitEl = document.querySelector("#submit");
+var nameInput = document.querySelector("#name");
+var emailInput = document.querySelector("#email");
+var submissionResponseEl = document.querySelector("#response");
+
+// Action to be performed on click store in named function
+function showResponse(event) {
+  // Prevent default action
+  event.preventDefault();
+  console.log(event);
+  var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
+  submissionResponseEl.textContent = response;
+}
+  
+// Add listener to submit element
+submitEl.addEventListener("click", showResponse);
+
+
+
+
+
+//==============This could be useful for retrieving the initials the user types for their score
+var typefaceEl = document.querySelector('#typeface');
+var clearEl = document.querySelector('#clear');
+var h1El = document.querySelector('#h1');
+var h2El = document.querySelector('#h2');
+var h3El = document.querySelector('#h3');
+var pEl = document.querySelector('#p');
+var textAreaEl = document.querySelector('#textarea');
+
+var elements = [h1El, h2El, h3El, pEl];
+
+var typeface;
+
+// Change event
+typefaceEl.addEventListener('change', function (event) {
+  event.preventDefault();
+  typeface = typefaceEl.value;
+  document.querySelector('.container').style.fontFamily = typeface;
+});
+
+// Keydown event
+textAreaEl.addEventListener('keydown', function (event) {
+  // Access value of pressed key with key property
+  var key = event.key.toLowerCase();
+  var alphabetNumericCharacters = 'abcdefghijklmnopqrstuvwxyz0123456789 '.split(
+    ''
+  );
+  if (alphabetNumericCharacters.includes(key)) {
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].textContent += event.key;
+    }
+  }
+});
+
+clearEl.addEventListener('click', function (event) {
+  event.preventDefault();
+  textAreaEl.value = '';
+
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].textContent = '';
+  }
+});
+
+
+
+
+
