@@ -1,14 +1,50 @@
 // variables: 
 //  start boolean
-//  
+//  timer boolean
+
+// question objects
+//  how many times should you brush your teeth in a day?
+//      {once, twice, thrice, four times}
+//  the most effective way to brush your teeth is:
+//      {90 degrees toward the gumline, mod bass method, brushing only the teeth and not gums, only brushing the biting surface of your teeth}
+//  flossing is best done before or after brushing?
+//      {after, before}
+//  T/F If you have a strong fever as a child, could that affect your teeth color?
+//      {true, false}
+//   At what level does fluoride become toxic?
+//      {0.02 mg/kg of body weight, 0.4 mg/kg body weight, 5 mg/kg, 5 g/kg}
+//  What is the primary function of mouth wash?
+//      {remove plaque, clean between teeth, whiten teeth, remove some remaining bacteria}
+//  When is the best time for starting braces?
+//      {12 years, 14 years, when the jaw nears complete development, when the adult teeth are all erupted}
+//  Night guards are used for...
+//      {protecting your teeth during sports, preventing snoring, protecting your teeth from clenching and grinding while sleeping, preventing biofilm progression while sleeping}
+//  Plaque is
+//      {mold that grows on teeth, left over food in the mouth, a protein matrix that forms a film over your teeth, bacteria and left over food on your teeth}
+//  Periodontal disease is...
+//      {a process by which bacteria cause cavities, inflammation of the gum tissue, a process by which the triggered immune system destroys connective tissue, is also called xerostomia}
+
+// var answers = {"twice", "mod bass method", "before", "true", "5 mg/kg", "remove some remaining bacteria", "when the adult teeth are all erupted", "protecting your teeth from clenching and grinding while sleeping", "bacteria and left over food on your teeth", "a process by which the triggered immune system destroys connective tissue"}
 
 //functions:
-//  
+//  show the question and answers in the middle screen
+//  if the wrong anser is clicked on, report false, reduce time by 6 seconds, save this data
+//  if the correct answer is clicked on, report true, save this data
+//  move to next question
+// if the timer reaches zero
+//  move to the end screen. show score and have an input box for initials
+//    submit
+//    show high scores
+//    would you like to play again button
+// have a high scores button in the UL
+// show the time remaining in the UR
+// calculate the score
+//    number of questions answered correctly plus time remaining = score
 
 
 
 
-//==========use object for questions (var question = {name: "Lolo", fequency: "2x/day", method: "manual brush"})
+//==========use object for answers (var answer = {name: "Lolo", fequency: "2x/day", method: "manual brush"})
 // Objects can also store methods
 tellFunFact: function () {
     console.log("The earth is the only planet in our solar system not named after a Roman god or goddess.");
@@ -98,3 +134,60 @@ var firstChildUl = document.getElementById("first-child-ul");
 
 // Setting style of element
 firstChildUl.style.color = "#e97451";
+
+
+// Access multiple elements using .querySelectorAll()
+var divTags = document.querySelectorAll("div");
+var pTags = document.querySelectorAll("p");
+var imgEl = document.querySelectorAll("img");
+
+// Access element by ID using .querySelector()
+var changeP = document.querySelector("#change2");
+
+// Sets first pTags to have a font-size of 40px
+pTags[0].setAttribute("style", "font-size: 40px;");
+
+// Sets changeP to have multiple style attributes
+changeP.setAttribute("style", "font-size: 25px; font-weight: bold; text-decoration:underline; ");
+
+// Sets image source of the first image
+imgEl[0].setAttribute("src", "./assets/images/image_1.png");
+
+// Adds size and width styling to image
+imgEl[0].setAttribute("style", "width:50%");
+
+// Loops through divTags to set each one to have the color blue and the font size of 30px
+for (var i = 0; i < divTags.length; i++) {
+ divTags[i].setAttribute("style", "color:blue; font-size: 30px");
+}
+
+
+
+// Stores user response in variable =================can be used for storing user answer, then used to compare to answer pool.
+var tagName = prompt("Please enter an HTML Tag (ex. h1, h2, p, div):", "enter tag");
+
+if (tagName !== "h1" && tagName !== "h2" && tagName !== "p" && tagName !== "div") {
+  alert("please enter a valid tag");
+} else {
+  // Creates element based on tag entered by user
+  var tag = document.createElement(tagName);
+
+  // Adds text content to created tag
+  tag.textContent = "This was made via prompts. It's a " + tagName + ".";
+  
+  // Appends tag as child of document body
+  document.body.appendChild(tag);
+}
+
+var nextTag = confirm("Would you like to add another tag?");
+
+if (nextTag === true) {
+  var secondTagName = prompt("Please enter another  HTML Tag (ex. h1, h2, p, div):", "enter tag here");
+  if(secondTagName !== "h1" && secondTagName !== "h2" && secondTagName !== "p" && secondTagName !== "div") {
+    alert("please enter a valid tag");
+  } else {
+    var secondTag = document.createElement(secondTagName);
+    secondTag.textContent = "This is our second tag via prompts, it's a " + secondTagName + ".";
+    document.body.appendChild(secondTag);
+  }
+}
