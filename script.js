@@ -46,6 +46,7 @@
 
 //==========use object for answers (var answer = {name: "Lolo", fequency: "2x/day", method: "manual brush"})
 // Objects can also store methods
+//*******You could store the correctly CLICKED answers in an object/array */
 tellFunFact: function () {
     console.log("The earth is the only planet in our solar system not named after a Roman god or goddess.");
   },
@@ -67,7 +68,7 @@ planet.tellFunFact();
 planet.showWarning();
 
 
-
+//==============
 // The default keyword "this" refers to the global object
 // In a browser, the global object is the Window 
 
@@ -328,6 +329,151 @@ clearEl.addEventListener('click', function (event) {
   }
 });
 
+//=============15. this is all about the event.stopPropogation method. This activity makes sure that you don't trigger multiple events when clicking inside a box that is also inside another box and so on... 
+var outer = document.querySelector(".outer-div");
+var inner = document.querySelector(".inner-div");
+var button = document.querySelector(".button");
+
+function changeBlue(event) {
+  event.stopPropagation();
+  event.currentTarget.setAttribute(
+    "style",
+    "background-color: blue"
+  );
+}
+
+function changePurple(event) {
+  event.stopPropagation();
+  event.currentTarget.setAttribute(
+    "style",
+    "background-color: #601A4A"
+  );
+}
+
+function changeOrange(event) {
+  event.stopPropagation();
+  event.currentTarget.setAttribute(
+    "style",
+    "background-color: #EE442F; color: white;"
+  );
+}
+
+outer.addEventListener("click", changePurple);
+inner.addEventListener("click", changeOrange);
+button.addEventListener("click", changeBlue);
+
+
+//=================19.  this changes elements based on clicking on them, the example is still image to animated image or gif. 
+var imageContainer = document.querySelector(".img-container");
+
+// Listen for any clicks within the img-container div
+imageContainer.addEventListener("click", function(event) {
+  var element = event.target;
+
+  // Check if the clicked element was an image
+  if (element.matches("img")) {
+    // Get the current value of the image's data-state attribute
+    var state = element.getAttribute("data-state");
+
+    if (state === "still") {
+      // Change the data-state attribute's value
+      // There are two different ways this attribute can be set
+      element.dataset.state = "animate";
+      element.setAttribute("data-state", "animate");
+
+      // Update the image's source to the string being stored in the data-animate attribute
+      element.setAttribute("src", element.dataset.animate);
+    } else {
+      // Change the attributes back to their non-animated values
+      element.dataset.state = "still";
+      element.setAttribute("src", element.dataset.still);
+    }
+  }
+});
+
+
+
+/// 22.   This will help you take information that was submitted and display it on the page, so like the final score for instance. You're going to need to store the correct answers somewhere...
+var emailInput = document.querySelector("#email");
+var passwordInput = document.querySelector("#password");
+var signUpButton = document.querySelector("#sign-up");
+var msgDiv = document.querySelector("#msg");
+var userEmailSpan = document.querySelector("#user-email");
+var userPasswordSpan = document.querySelector("#user-password");
+
+
+renderLastRegistered();
+
+function displayMessage(type, message) {
+  msgDiv.textContent = message;
+  msgDiv.setAttribute("class", type);
+}
+
+function renderLastRegistered() {
+  var email = localStorage.getItem("email");
+  var password = localStorage.getItem("password");
+
+  if (!email || !password) {
+    return;
+  }
+
+  userEmailSpan.textContent = email;
+  userPasswordSpan.textContent = password;
+}
+
+signUpButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var email = document.querySelector("#email").value;
+  var password = document.querySelector("#password").value;
+
+  if (email === "") {
+    displayMessage("error", "Email cannot be blank");
+  } else if (password === "") {
+    displayMessage("error", "Password cannot be blank");
+  } else {
+    displayMessage("success", "Registered successfully");
+
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+    renderLastRegistered();
+  }
+});
+
+
+
+
+// 23   =============This takes input from drop down options and then renders a string of input variables, coordinated into a sentence. 
+var student = document.getElementById("student-names");
+var grade = document.getElementById("grades");
+var comment = document.getElementById("msg");
+var saveButton = document.getElementById("save");
+var savedName = document.getElementById("saved-name");
+
+saveButton.addEventListener("click", function(event) {
+event.preventDefault();
+
+var studentGrade = {
+  student: student.value,
+  grade: grade.value,
+  comment: comment.value.trim()
+};
+
+localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
+renderMessage();
+
+});
+
+function renderMessage() {
+  var lastGrade = JSON.parse(localStorage.getItem("studentGrade"));
+  if (lastGrade !== null) {
+    document.querySelector(".message").textContent = lastGrade.student + 
+    " received a/an " + lastGrade.grade
+  }
+}
+
+
+//There may be details in the student activities that are not covered in the Instructor activities. remember to check those if you get stuck!
 
 
 

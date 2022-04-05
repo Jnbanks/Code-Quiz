@@ -1,2 +1,23 @@
 /* You won't need much styling for making this pretty, it's important though, that you make the screen adaptable and place text in an organized fassion. */
 /* flex is important */
+body {
+    display: flex;
+    flex-direction: column;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h1 {
+    display: flex;
+    margin: auto;
+}
+.startButton {
+    display: flex;
+    margin: auto;
+    border: 3px solid black;
+    border-radius: 8px;
+    padding: 3px;
+    margin-top: 8px;
+}
