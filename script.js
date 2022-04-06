@@ -28,52 +28,72 @@ function setTime() {
   }, 1000);
 }
 
-function firstQuestion () {
-  //produce a random number between 0 and 9, call it variable rando
-  var rando = Math.floor(Math.random() * 10);
-  questionsAsked = rando;
-  //questionsAsked.push(rando);
-  //assign that number to the index of the questionBank
-  var currentQuestion = document.getElementById(rando);
-  //Keep track of what questions have been asked
-  //display the ul represented by that index number
-  currentQuestion.setAttribute("style", "display: block", "margin: auto");
-  console.log(rando);
-  findQuestion();
-  }
+// function firstQuestion () {
+//   //produce a random number between 0 and 9, call it variable rando
+//   //var rando = Math.floor(Math.random() * 10);
+//   //questionsAsked = rando;
+//   //questionsAsked.push(rando);
+//   newNumber();
+//   //assign that number to the index of the questionBank
+//   var currentQuestion = document.getElementById(rando);
+//   //Keep track of what questions have been asked
+//   //display the ul represented by that index number
+//   currentQuestion.setAttribute("style", "display: block", "margin: auto");
+//   console.log(rando);
+//   findQuestion();
+//   }
 
 //Ask Questions Function-------------\\\\\\\\\\\\\\\\\\\\\
-function findQuestion () {
-//produce a random number between 0 and 9, call it variable rando
-var rando = Math.floor(Math.random() * 10);
-checkRedundancy();
-//assign that number to the index of the questionBank
-var currentQuestion = document.getElementById(rando);
-//Keep track of what questions have been asked
-questionsAsked.push(rando);
-//display the ul represented by that index number
-currentQuestion.setAttribute("style", "display: block", "margin: auto");
-console.log(rando);
+// function findQuestion () {
+// //produce a random number between 0 and 9, call it variable rando
+// //var rando = Math.floor(Math.random() * 10);
+// checkRedundancy();
+// //assign that number to the index of the questionBank
+// var currentQuestion = document.getElementById(rando);
+// //Keep track of what questions have been asked
+// questionsAsked.push(rando);
+// //display the ul represented by that index number
+// currentQuestion.setAttribute("style", "display: block", "margin: auto");
+// console.log(rando);
 //create an if statement that ensures that a question is not asked more than once
 
+//}
+
+//============================================================
+//ask question (no more messing with the random question business)
+function askQuestion () {
+
+  for (var i = 0; i < questionBank.length; i++) {
+    var currentQuestion = document.getElementById(i);
+    currentQuestion.setAttribute("style", "display: block", "margin: auto");
+  }
 }
+
+//what about a function that produces a random number and ensures it is not a number that has been previously rendered?
+// function firstNumber (questionsAsked) {
+//   var rando = Math.floor(Math.random() * 10);
+//   questionsAsked.push(rando);
+// }
+  
+
+
 
 //Do not repeat a question
-function checkRedundancy (value, questionsAsked) {
-  var status = 'Not Asked';
+// function checkRedundancy (value, questionsAsked) {
+//   var status = 'Not Asked';
 
-  for (var i = 0; i < questionsAsked.length; i++) {
-    var question = questionsAsked[i];
-    if (question = value) {
-      status = 'Asked';
-      findQuestion;
-    } else if (i = questionsAsked.length) {
-      //show the final score!
-      console.log('No more questions!')
-    }
-  }
-  return status;
-}
+//   for (var i = 0; i < questionsAsked.length; i++) {
+//     var question = questionsAsked[i];
+//     if (question = value) {
+//       status = 'Asked';
+//       findQuestion;
+//     } else if (i = questionsAsked.length) {
+//       //show the final score!
+//       console.log('No more questions!')
+//     }
+//   }
+//   return status;
+// }
 
 //check the value of the choice, correct or incorrect
 //function checkAnswer ()
@@ -88,10 +108,10 @@ if (event.target = correctChoice) {
   //hide the question and answers
   document.ul.setAttribute("style", "display: none");
   //find a new question
-  findQuestion();
+  askQuestion();
 } else {
   secondsLeft - 3;
-  findQuestion();
+  askQuestion();
 }
 
 })
@@ -140,7 +160,7 @@ openingH1.setAttribute("style", "display: none")
 setTime();
 // console.log(questionBank);
 // console.log(questionBank.length);
-firstQuestion();
+askQuestion();
 console.log("yeah");
 })
 
