@@ -7,7 +7,7 @@ var viewScore = document.querySelector("h3");
 //var affirmAnswer = document.querySelector(".correct")
 var questionBank = ["1","2","3","4","5","6","7","8","9","0"]
 //var seen = false;
-var questionsAsked = "";
+var questionsAsked = [];
 var correctChoice = document.querySelector(".correct")
 var choice = document.querySelector("li")
 var score = 0;
@@ -31,7 +31,8 @@ function genNumAndAdd (questionsAsked) {
   var rando = Math.floor(Math.random() * 10);
   questionsAsked.push(rando);
 }
-  function checkRedundancy (value, questionsAsked) {
+    
+function checkRedundancy (value, questionsAsked) {
     
       for (var i = 0; i < questionsAsked.length; i++) {
           var question = questionsAsked[i];
@@ -48,12 +49,30 @@ function genNumAndAdd (questionsAsked) {
 
 //ask question (no more messing with the random question business)
 function askQuestion () {
-  
-  for (var i = 0; i < questionBank.length; i++) {
-    var currentQuestion = document.getElementById(i);
-    currentQuestion.setAttribute("style", "display: block", "margin: auto");
+  var notCurrentQuestions = document.querySelector(".hidden");
+  for (currentQuestion of notCurrentQuestions) {
+    currentQuestion.setAttribute("style", "display: none")
   }
+  const i = Math.floor(Math.random() * 9) 
+    var currentQuestion = document.getElementById(i);
+    questionsAsked.push(i);
+    console.log(i);
+    var answers = currentQuestion.getElementsByTagName("li");
+    for(answer of answers){
+      answer.addEventListener('click', function(event) {
+        if (event.target.classList.contains("correct")) {
+          score++;
+        } else {
+          secondsLeft -=299;
+        }
+        askQuestion();
+      });
+      // do stuff here
+    }
+    currentQuestion.setAttribute("style", "display: block", "margin: auto");
 }
+
+
 
 
 //eventlistener for clicking a list item/answer and then determining what to do
@@ -149,20 +168,20 @@ startBtn.addEventListener("click", function() {
 //   }
 
 //Ask Questions Function-------------\\\\\\\\\\\\\\\\\\\\\
-// function findQuestion () {
-// //produce a random number between 0 and 9, call it variable rando
-// //var rando = Math.floor(Math.random() * 10);
-// checkRedundancy();
-// //assign that number to the index of the questionBank
-// var currentQuestion = document.getElementById(rando);
-// //Keep track of what questions have been asked
-// questionsAsked.push(rando);
-// //display the ul represented by that index number
-// currentQuestion.setAttribute("style", "display: block", "margin: auto");
-// console.log(rando);
+function findQuestion () {
+//produce a random number between 0 and 9, call it variable rando
+var rando = Math.floor(Math.random() * 10);
+checkRedundancy();
+//assign that number to the index of the questionBank
+var currentQuestion = document.getElementById(rando);
+//Keep track of what questions have been asked
+questionsAsked.push(rando);
+//display the ul represented by that index number
+currentQuestion.setAttribute("style", "display: block", "margin: auto");
+console.log(rando);
 //create an if statement that ensures that a question is not asked more than once
 
-//}
+}
 
 
 //what about a function that produces a random number and ensures it is not a number that has been previously rendered?
