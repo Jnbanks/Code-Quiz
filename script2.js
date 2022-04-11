@@ -121,20 +121,33 @@ secondsLeft = 30;
 var timer = document.querySelector("h2");
 var startBtn = document.querySelector(".startButton");
 var openingH1 = document.querySelector("h1");
-const quizCard = document.getElementById("quiz");
 const scoreCard = document.getElementById("scoreboard");
 const answers = [];
 var score = "";
 
 //functions:
 
+
+
 ////Ask First Question 
 function askQuestion () {
-  //var currentQuestion = 
-  var displayQuestion = document.getElementById("#quiz");
-  var currentQuestion = JSON.stringify(questions[0]);
+  var currentQuestion = document.getElementById("#question");
+  var answerA = document.getElementById("#a");
+  var answerB = document.getElementById("#b");
+  var answerC = document.getElementById("#c");
+  var answerD = document.getElementById("#d");
+  //var correct = questions[i].correctAnswer
+  //let i = 0;
+  
+  currentQuestion.textContent = questions[0].question;
+  answerA.textContent = questions[0].a;
+  answerB.textContent = questions[0].b;
+  answerC.textContent = questions[0].c;
+  answerD.textContent = questions[0].d;
+
   console.log(currentQuestion);
   displayQuestion.textContent = currentQuestion;
+  
 }
 //no random question order, just use the order as given in the object array
 //make the index format so that the question is first, and the answers are displayed below it as a list. Do Not display the correct answer
