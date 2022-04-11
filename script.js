@@ -2,7 +2,7 @@
 var startBtn = document.querySelector(".startButton");
 var openingH1 = document.querySelector("h1");
 var timer = document.querySelector("h2");
-var secondsLeft = 300;
+var secondsLeft = 30;
 var viewScore = document.querySelector("h3");
 //var affirmAnswer = document.querySelector(".correct")
 var questionBank = ["1","2","3","4","5","6","7","8","9","0"]
@@ -27,6 +27,11 @@ function setTime() {
     }
   }, 1000);
 }
+
+function presentQuestion () {
+  
+}
+
 function genNumAndAdd (questionsAsked) {
   var rando = Math.floor(Math.random() * 10);
   questionsAsked.push(rando);
