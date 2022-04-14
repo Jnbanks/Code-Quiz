@@ -15,33 +15,28 @@ h1 {
     display: flex;
     margin: auto;
 }
-.startButton {
+#startBtn {
     display: flex;
     margin: auto;
     border: 3px solid black;
     border-radius: 8px;
     padding: 3px;
-    margin-top: 8px;
+    margin-top: 2px;
 }
 .hidden {
     display: none;
 }
-main {
-    display: flex;
-    margin: auto;
-}
-p {
-    font-weight: bolder;
-    font-size: large;
-}
+
 #quiz {
     display:table-column;
+    display: none;
     margin: auto;
     padding: 3px;
     margin-top: 8px;
 }
 #scoreboard {
     display: flex;
+    /* display: none; */
     margin: auto;
     padding: 3px;
     margin-top: 8px;

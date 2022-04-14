@@ -12,25 +12,26 @@
 <body>
 
     <header>
-        <h3 class="viewScore">View Score</h3>
-        <h2 class="timeRemaining">Seconds Remaining</h2>
+        <button id="viewScore">View Score</button>
+        <h2 id="timer">Seconds Remaining</h2>
     </header>
-    <h1>
+    <div>
+        <p id="scoreboard"></p>
+    </div>
+    <h1 id="header" >
         Ready for a Quiz?
     </h1>
-    <h2 class="startButton">Start</h2>
-  
+    <button id="startBtn"> <h2>Start</h2> </button>
+   
     <div id="quiz">
-        <h3 id="question">Q</h3>
-        <ul>
-            <li id="a">a</li>
-            <li id="b">b</li>
-            <li id="c">c</li>
-            <li id="d">d</li>
-        </ul>
+        <h3 id="question"></h3>
+        
+            <button class="choice" id="a" onclick="checkChoice('a')"></button> <br>
+            <button class="choice" id="b" onclick="checkChoice('b')"></button> <br>
+            <button class="choice" id="c" onclick="checkChoice('c')"></button> <br>
+            <button class="choice" id="d" onclick="checkChoice('d')"></button>
     </div>
 
-    <div id="scoreboard"></div>
 
     <!-- link the javascript -->
     <script src="script2.js"></script>
